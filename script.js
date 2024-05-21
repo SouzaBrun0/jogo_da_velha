@@ -1,7 +1,7 @@
-let x = document.querySelector("x");
-let o =document.querySelector("o");
-let boxes = document.querySelector(".box");
-let buttons = document.querySelector("#buttons-container button");
+let x = document.querySelector(".x");
+let o =document.querySelector(".o");
+let boxes = document.querySelectorAll(".box");
+let buttons = document.querySelectorAll("#buttons-container button");
 let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
 let secondPlayer ;
@@ -74,7 +74,7 @@ function checkEl(player1,player2){
     }
     return el;
 }
-
+//ve quem ganhou
 function checkWinCondition(){
     let b1 = document.getElementById("block-1");
     let b2 = document.getElementById("block-2");
@@ -141,9 +141,9 @@ if(b1.childNodes.length > 0 && b4.childNodes.length > 0 && b7.childNodes.length 
 }
 
 if(b2.childNodes.length > 0 && b5.childNodes.length > 0 && b8.childNodes.length >0){
-    let b2Child = b3.childNodes[0].className;
-    let b5Child = b6.childNodes[0].className;
-    let b8Child = b9.childNodes[0].className;
+    let b2Child = b2.childNodes[0].className;
+    let b5Child = b5.childNodes[0].className;
+    let b8Child = b8.childNodes[0].className;
 
     if(b2Child == 'x' && b5Child == 'x' && b8Child == 'x'){
         //x
@@ -183,9 +183,9 @@ if(b1.childNodes.length > 0 && b5.childNodes.length > 0 && b9.childNodes.length 
 }
 
 if(b3.childNodes.length > 0 && b5.childNodes.length > 0 && b7.childNodes.length >0){
-    let b3Child = b1.childNodes[0].className;
+    let b3Child = b3.childNodes[0].className;
     let b5Child = b5.childNodes[0].className;
-    let b7Child = b9.childNodes[0].className;
+    let b7Child = b7.childNodes[0].className;
 
     if(b3Child == 'x' && b5Child == 'x' && b7Child == 'x'){
         //x
@@ -197,7 +197,7 @@ if(b3.childNodes.length > 0 && b5.childNodes.length > 0 && b7.childNodes.length 
 
 // deu velha 
 
-let counter =0
+let counter = 0;
 
 for(let i= 0; i < boxes.length; i++){
     if(boxes[i].childNode[0] !=undefined){
@@ -219,7 +219,7 @@ function declareWinner(winner){
     if(winner == 'x'){
         scooreboardx.textContent = parseInt(scooreboardx.textContent) + 1;
         msg = "O jogador 1 Venceu !"
-    }else if(winner = 'o'){
+    }else if(winner == 'o'){
         scooreboardy.textContent = parseInt(scooreboardy.textContent) + 1;
         msg = "O jogador 2 venceu! "
     }else {
@@ -228,7 +228,7 @@ function declareWinner(winner){
 //exibe msg
 messageText.innerHTML = msg;
 messageContainer.classList.remove("hide");
-
+//esconde a msg 
 setTimeout(function(){
     messageContainer.classList.add("hide")
 },3000);
@@ -261,9 +261,10 @@ function computerPlay(){
                 counter ++;
                 break
             }
-            else{
-                filled++;
-            }
+        }
+        //checa quantas estao preenchidas
+        else{
+            filled++;
         }
         if(counter == 0 &&filled < 9){
             computerPlay();
